@@ -362,7 +362,7 @@ class Pipeline {
     windowBy(w) {
         let type, duration;
         if (_.isString(w)) {
-            if (w === "daily" || w === "monthly" || w === "yearly") {
+            if (w === "daily" || w === "isoweek" || w === "monthly" || w === "yearly") {
                 type = w;
             } else {
                 // assume fixed window with size w

@@ -64,6 +64,8 @@ export default class Collector {
             windowKey = Index.getIndexString(this._windowDuration, timestamp);
         } else if (windowType === "daily") {
             windowKey = Index.getDailyIndexString(timestamp);
+        } else if (windowType === "isoweek") {
+            windowKey = Index.getIsoWeekIndexString(timestamp);
         } else if (windowType === "monthly") {
             windowKey = Index.getMonthlyIndexString(timestamp);
         } else if (windowType === "yearly") {

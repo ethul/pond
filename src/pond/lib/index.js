@@ -8,6 +8,8 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
+import moment from "moment";
+
 import util from "./base/util";
 
 /**
@@ -128,6 +130,13 @@ class Index {
         );
         const year = utc ? date.getUTCFullYear() : date.getFullYear();
         return `${year}-${month}-${day}`;
+    }
+
+    /**
+     * Generate an index string with week granularity.
+     */
+    static getIsoWeekIndexString(date, utc = false) {
+      return moment(date.valueOf()).format('GGGG-[W]WW-[1]');
     }
 
     /**

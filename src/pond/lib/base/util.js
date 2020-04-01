@@ -70,8 +70,21 @@ export default {
 
         switch (parts.length) {
             case 3:
+                const isoWeekRegex = /^W(\d\d)$/;
+                const isoWeek = isoWeekRegex.exec(parts[1]);
+                // A year, a week, a week day e.g., 2020-W11-3
+                if (isoWeek) {
+                    const beginIndex = `${parts[0]}-W${isoWeek[1]}-1`;
+                    const endIndex = `${parts[0]}-W${isoWeek[1]}-7`;
+                    beginTime = isUTC
+                        ? moment.utc(beginIndex)
+                        : moment(beginIndex)
+                    endTime = isUTC
+                        ? moment.utc(endIndex).endOf("day")
+                        : moment(endIndex).endOf("day");
+                }
                 // A day, month and year e.g. 2014-10-24
-                if (
+                else if (
                     !_.isNaN(parseInt(parts[0], 10)) &&
                         !_.isNaN(parseInt(parts[1], 10)) &&
                         !_.isNaN(parseInt(parts[2], 10))
